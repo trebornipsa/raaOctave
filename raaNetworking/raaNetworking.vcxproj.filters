@@ -21,10 +21,16 @@
     <ClInclude Include="raaMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="raaClientConnection.h">
+    <ClInclude Include="raaNetworkingTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="raaSocket.h">
+    <ClInclude Include="raaConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="raaConnectionListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="raaConnectionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,19 +41,25 @@
     <ClCompile Include="raaMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="raaServer.cpp">
+    <ClCompile Include="raaTcpSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="raaClientConnection.cpp">
+    <ClCompile Include="raaTcpThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="raaTCPSocket.cpp">
+    <ClCompile Include="raaTcpServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="raaSocketThread.cpp">
+    <ClCompile Include="raaTcpClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="raaSocket.cpp">
+    <ClCompile Include="raaConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="raaConnectionListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="raaConnectionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -55,13 +67,16 @@
     <CustomBuild Include="raaNetworking.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="raaServer.h">
+    <CustomBuild Include="raaTcpSocket.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="raaSocketThread.h">
+    <CustomBuild Include="raaTcpThread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="raaTCPSocket.h">
+    <CustomBuild Include="raaTcpServer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="raaTcpClient.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

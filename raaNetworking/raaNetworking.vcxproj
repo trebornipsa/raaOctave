@@ -107,6 +107,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;RAANETWORKING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(QTDIR)\include; $(raaInst)\include; $(QTDIR)\include\QtOpenGL; $(QTDIR)\include\QtCore</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,6 +118,9 @@
     <PostBuildEvent>
       <Command>raaCF debugdll $(ProjectName)</Command>
     </PostBuildEvent>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -155,9 +159,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="raaClientConnection.h" />
+    <ClInclude Include="raaConnection.h" />
+    <ClInclude Include="raaConnectionListener.h" />
+    <ClInclude Include="raaConnectionManager.h" />
     <ClInclude Include="raaMessage.h" />
-    <CustomBuild Include="raaSocketThread.h">
+    <ClInclude Include="raaNetworkingTypes.h" />
+    <CustomBuild Include="raaTcpClient.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">raaMOC %(filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(filename).moc</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="raaTcpThread.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">raaMOC %(filename)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(filename).moc</Outputs>
     </CustomBuild>
@@ -166,24 +177,25 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</Outputs>
     </CustomBuild>
     <ClInclude Include="raaNetworkingDefs.h" />
-    <CustomBuild Include="raaServer.h">
+    <CustomBuild Include="raaTcpServer.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">raaMoc %(filename)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(filename).moc</Outputs>
     </CustomBuild>
-    <ClInclude Include="raaSocket.h" />
-    <CustomBuild Include="raaTCPSocket.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">raaMOC %(filename)</Command>
+    <CustomBuild Include="raaTcpSocket.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">raaMoc %(filename)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(filename).moc</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="raaClientConnection.cpp" />
+    <ClCompile Include="raaConnection.cpp" />
+    <ClCompile Include="raaConnectionListener.cpp" />
+    <ClCompile Include="raaConnectionManager.cpp" />
     <ClCompile Include="raaMessage.cpp" />
     <ClCompile Include="raaNetworking.cpp" />
-    <ClCompile Include="raaServer.cpp" />
-    <ClCompile Include="raaSocket.cpp" />
-    <ClCompile Include="raaTCPSocket.cpp" />
-    <ClCompile Include="raaSocketThread.cpp" />
+    <ClCompile Include="raaTcpClient.cpp" />
+    <ClCompile Include="raaTcpServer.cpp" />
+    <ClCompile Include="raaTcpSocket.cpp" />
+    <ClCompile Include="raaTcpThread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

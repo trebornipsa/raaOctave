@@ -3,12 +3,13 @@
 #include "raaNetworkingDefs.h"
 #include <QtCore/QEvent>
 #include <QtCore/QObject>
-
+#include "raaNetworkingTypes.h"
 
 
 namespace raaNetworking
 {
 	class raaMessage;
+	class raaConnectionListenerFactory;
 
 	class RAANETWORKING_DLL_DEF raaNetworking: public QObject
 	{
@@ -18,28 +19,21 @@ namespace raaNetworking
 		static void stop();
 		static raaNetworking* instance();
 
-		static QEvent::Type readEvent();
-		static QEvent::Type writeEvent();
-
-		void write(raaMessage* pMessage);
-
-		void createServer(QString sName, quint16 uiPort);
-		void createClient(QString sName, quint16 uiPort, QString sIP, bool bTcp = true, bool bUdp = false);
+		bool createServer(QString sName, quint16 uiPort, raaConnectionListenerFactory* pFactory);
+		bool createClient(QString sName, QString sHostAddress, quint16 uiPort, raaConnectionListenerFactory* pFactory);
 
 		void closeServer(QString sName);
 		void closeClient(QString sName);
-	private:
-		static int sm_iRead;
-		static int sm_iWrite;
 
+	private:
 		raaNetworking();
 		virtual ~raaNetworking();
 		static raaNetworking* sm_pInstance;
 		static unsigned int sm_uiInstance;
 
-	protected:
-		void customEvent(QEvent *pEvent);
-
-
+		raaConnectionManagerNameMap m_mServersByName;
+		raaConnectionManagerNameMap m_mClientsByName;
+		raaConnectionManagerPortMap m_mServersByPort;
+		raaConnectionManagerPortMap m_mClientsByPort;
 	};
 }

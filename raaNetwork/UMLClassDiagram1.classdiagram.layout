@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLClassDiagram1">
+  <logicalClassDesignerModelMoniker Id="01cc4a39-f83b-48f6-90b9-c1448fbae067" />
+  <nestedChildShapes>
+    <classShape Id="5f8404dc-23e5-4610-a63f-1f7fcbd21099" absoluteBounds="3.125, 3.25, 1.5, 1.6683043545484537" hideQualifiedName="false" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+      <classMoniker Id="4841a274-3979-436b-8d57-31f4e1c4cad2" LastKnownName="raaTcpSocket" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="698f4f6c-d685-4024-b86e-7159caa13cc9" absoluteBounds="3.14, 3.7653356393178306, 1.4700000000000002, 0.36132811258236563" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="8b6647aa-407c-4092-9863-18dd14e57ba5" absoluteBounds="3.14, 4.1366637519001959, 1.4700000000000002, 0.68164060264825821" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8db1b93a-05c9-415e-9222-42ca4c17e42f" absoluteBounds="0.5, 1.125, 1.5, 0.90234373509883881" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
+      <classMoniker Id="c3c51b55-74ef-48da-8d30-138acdac3a01" LastKnownName="QTcpSocket" />
+      <nestedChildShapes>
+        <AttributeElementListCompartment Id="23e6360c-1960-4c5b-bdbc-59dd6e42a776" absoluteBounds="0.51500000000000012, 1.5150000000000001, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="6421a6b9-cabc-4da4-8a8d-392d0180c2ca" absoluteBounds="0.51500000000000012, 1.7261718675494193, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>
