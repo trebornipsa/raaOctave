@@ -8,8 +8,10 @@
 
 namespace raaNetworking
 {
+	class raaConnection;
 	class RAANETWORKING_DLL_DEF raaMessage: public QEvent
 	{
+		friend raaConnection;
 	public:
 		const static unsigned short csm_usTypeNone = 0;
 		const static unsigned short csm_usTypeSystem = 1;
@@ -20,7 +22,7 @@ namespace raaNetworking
 		const static unsigned int csm_uiMsgBadIndex = 5100;
 
 		raaMessage(unsigned short usType, QEvent::Type t);
-		raaMessage(QByteArray &data, unsigned short usType, QEvent::Type t);
+		raaMessage(QByteArray &data, unsigned short usType, QEvent::Type t, raaConnection* pConnection, unsigned int uiMessageID);
 		virtual ~raaMessage();
 
 		void add(unsigned short usVal);
@@ -49,7 +51,12 @@ namespace raaNetworking
 
 		unsigned short type();
 
+		raaConnection* connection();
+
+		unsigned int messageID();
+
 	protected:
+		unsigned int m_uiMessageID;
 		void unpack();
 
 		QByteArray m_Data;
@@ -60,5 +67,7 @@ namespace raaNetworking
 		unsigned int m_uiBuildLen;
 
 		QMutex m_Mutex;
+		raaConnection* m_pConnection;
+		static unsigned int sm_uiMessageID;
 	};
 }

@@ -12,7 +12,7 @@ namespace raaNetworking
 		Q_OBJECT
 	public:
 		raaTcpSocket(QObject *pParent = 0);
-		virtual ~raaTcpSocket();
+		virtual ~raaTcpSocket(); 
 	protected:
 		virtual void customEvent(QEvent *pEvent);
 		QMutex m_Mutex;

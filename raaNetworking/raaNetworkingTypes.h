@@ -12,13 +12,16 @@ namespace raaNetworking
 
 	typedef std::list<raaConnection*> raaConnectionList;
 	typedef std::map<QString, raaConnectionManager*> raaConnectionManagerNameMap;
-	typedef std::map<quint16, raaConnectionManager*> raaConnectionManagerPortMap;
+	typedef std::map<quint16, raaConnectionManager*> raaConnectionManagerPortMap; 
 
-	static int sm_iRead = 0;
-	static int sm_iWrite = 0;
+//	static int sm_iRead = QEvent::registerEventType();
+//	static int sm_iWrite = QEvent::registerEventType();
+//	static int sm_iRead = 0;
+//	static int sm_iWrite = 0;
 
-	static QEvent::Type readEvent() {return QEvent::Type(sm_iRead);};
-	static QEvent::Type writeEvent() { return QEvent::Type(sm_iWrite);};
+//	static QEvent::Type readEvent() {return QEvent::Type(sm_iRead);};
+//	static QEvent::Type writeEvent() { return QEvent::Type(sm_iWrite);};
+
 
 	const static unsigned short csm_usTcpMsgSystem = 0;
 	const static unsigned short csm_usTcpMsgInfo = 1;

@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 #include <QtCore/QThread>
 #include <QtNetwork/QAbstractSocket>
@@ -22,29 +23,30 @@ namespace raaNetworking
 		Q_OBJECT
 	public:
 		raaTcpThread(QString sAddress, quint16 uiPort, QObject *pParent = 0);
-		raaTcpThread(qintptr piSocketDescriptor, QObject *pParent = 0);
-
-		virtual void close();
+		raaTcpThread(qintptr piSocketDescriptor, QString sAddress, quint16 uiPort, QObject *pParent = 0);
+		virtual ~raaTcpThread();
 
 		QString name();
 
 		virtual void send(raaMessage* pMsg);
 
+		virtual void close();
 	public slots:
+		void tcpStateChanged(QAbstractSocket::SocketState);
 		void readyRead();
 		void disconnected();
+
+	signals:
+		void stateChanged(QAbstractSocket::SocketState, raaConnection*);
 
 	protected:
 		raaTcpSocket *m_pSocket;
 		qintptr m_piSocketDescriptor;
-		QString m_sAddress;
-		quint16 m_uiPort;
-		bool m_bServer;
+
 
 		virtual void run();
 		virtual void customEvent(QEvent *pEvent);
 		QMutex m_Mutex;
 
-		virtual ~raaTcpThread();
 	};
 }

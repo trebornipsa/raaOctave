@@ -1,15 +1,19 @@
 #include "raaMessage.h"
 #include "raaNetworkingTypes.h"
+#include "raaNetworking.h"
+#include <iostream>
+
+unsigned int raaNetworking::raaMessage::sm_uiMessageID=0;
 
 
-raaNetworking::raaMessage::raaMessage(unsigned short usMsgType, QEvent::Type t): QEvent(t)
+raaNetworking::raaMessage::raaMessage(unsigned short usMsgType, QEvent::Type t): QEvent(t), m_usType(m_usType), m_pConnection(0)
 {
-	
+	m_uiMessageID = sm_uiMessageID++;
 }
 
-raaNetworking::raaMessage::raaMessage(QByteArray& data, unsigned short usType, QEvent::Type t): m_Data(data), m_usType(usType), QEvent(t)
+raaNetworking::raaMessage::raaMessage(QByteArray& data, unsigned short usType, QEvent::Type t, raaConnection* pConnection, unsigned int uiMessageID): m_Data(data), m_usType(usType), QEvent(t), m_pConnection(pConnection)
 {
-	
+	unpack(); 
 }
 
 void raaNetworking::raaMessage::add(unsigned short usVal)
@@ -134,7 +138,7 @@ float raaNetworking::raaMessage::asFloat(unsigned uiIndex)
 
 raaNetworking::raaMessage::~raaMessage()
 {
-
+	std::cout << "raaMessage deleted" << std::endl;
 }
 
 QByteArray& raaNetworking::raaMessage::data()
@@ -149,7 +153,7 @@ QByteArray& raaNetworking::raaMessage::data()
 			it++;
 			if (it != m_DataList.end()) m_Data.append(csm_pcSepperator);
 		}
-		//		m_Data=qCompress(m_Data, 1);
+		m_Data=qCompress(m_Data, raaNetworking::compression());
 		m_uiBuildLen = m_DataList.length();
 	}
 	return m_Data;
@@ -160,13 +164,18 @@ unsigned short raaNetworking::raaMessage::type()
 	return m_usType;
 }
 
+unsigned raaNetworking::raaMessage::messageID()
+{
+	return m_uiMessageID;
+}
+
 void raaNetworking::raaMessage::unpack()
 {
 	qint64 uiIndex = 0, i;
 
 	m_DataList.clear();
 
-	//	m_Data = qUncompress(m_Data);
+	m_Data = qUncompress(m_Data);
 
 	do
 	{

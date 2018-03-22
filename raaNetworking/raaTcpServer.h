@@ -12,11 +12,11 @@ namespace raaNetworking
 	{
 		Q_OBJECT
 	public:
-		raaTcpServer(quint16 uiPort, raaConnectionListenerFactory *pFactory, QObject* pParent=0);
+		raaTcpServer(quint16 uiPort, raaConnectionListenerFactory *pFactory, bool bCanDeleteFactory=true, QObject* pParent=0);
 		virtual ~raaTcpServer();
 
 	public slots:
-		void stateChanged(QAbstractSocket::SocketState);
+		void stateChanged(QAbstractSocket::SocketState, raaConnection*);
 
 	protected:
 		quint16 m_uiPort;
